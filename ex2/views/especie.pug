@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title Espécie
+  body
+    h1= especie.nome
+    h2 Designação Científica: #{especie.designacaoCientifica}
+    table
+      tr
+        th _id
+        th Freguesia
+        th Estado
+        th Número de intervenções
+      each registro in especie.registros
+        tr
+          td= registro._id
+          td= registro.freguesia
+          td= registro.estado
+          td= registro.intervencoes
+    a(href="/") Voltar à página principal

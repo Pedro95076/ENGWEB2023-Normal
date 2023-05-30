@@ -1,0 +1,23 @@
+EXERCICIO 1
+    1.1 Setup
+
+    O "datasetJSON" se refere a uma base de dados em formato JSON que contem informações sobre árvores plantadas em uma determinada área.
+    A primeira alteração que acho necessária é substituir o nome do campo "I" por "_id", pois será necessário para utilizar o mongoDB.
+    Além disso, existem campos vazios em alguns atributos, uma possibilidade era apagar estes registos mas poderiamos estar a perder informação útil, logo a proxima alteração será substituir todas as strings vazias "" por "SemInfo"
+    
+    A persistência de dados foi feita usando o mongoDB,
+    usando o comando:
+    mongoimport --db plantas --collection plantas --file plantas.json
+
+    1.2 Queries
+    --> Quantos registos estão na base de dados?
+        db.plantas.count()
+    --> Quantos registos de plantação se encontram na freguisia "São Domingos de Rana"?
+        db.plantas.find({"Freguesia": "São Domingos de Rana"}).count()
+    --> Qual a lista de freguesias (ordenada alfabeticamente e sem repetições)?
+        db.plantas.distinct("Freguesia").sort()
+    --> Qual a distribuição dos registos por freguesia (quantos registos em cada freguesia)?
+        db.plantas.aggregate([{$group: {_id: "$Freguesia", count: {$sum: 1}}}] )
+    --> Qual a distribuição dos registos por espécie?
+        db.plantas.aggregate([{ $group: { _id: "$Espécie", count: { $sum: 1 } } }])
+

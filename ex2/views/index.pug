@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title Exercício do teste de EW2023
+    style
+      table
+        width: 100%
+        border-collapse: collapse
+      th, td
+        padding: 8px
+        text-align: left
+        border-bottom: 1px solid #ddd
+      th
+        background-color: #f2f2f2
+  body
+    h1 Exercício do teste de EW2023
+    table
+      tr
+        th _id
+        th Freguesia
+        th Espécie
+        th Estado
+        th Número de intervenções
+      each planta in plantas
+        tr
+          td
+            a(href="/plantas/#{planta._id}") #{planta._id}
+          td #{planta.freguesia}
+          td
+            a(href="/especies/#{planta.especie}") #{planta.especie}
+          td #{planta.estado}
+          td #{planta.intervencoes.length}

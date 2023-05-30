@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title Registro
+  body
+    h1 Registro
+    table
+      tr
+        th _id
+        th Freguesia
+        th Espécie
+        th Estado
+        th Número de intervenções
+      tr
+        td #{registro._id}
+        td #{registro.freguesia}
+        td #{registro.especie}
+        td #{registro.estado}
+        td #{registro.intervencoes}
+    a(href="/") Voltar à página principal
